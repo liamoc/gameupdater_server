@@ -14,7 +14,7 @@ if ($parts[0] == "info")
 {
 	if ($parts[1] == "version")
 	{
-		if (!file_exists("../data/version"))
+		if (!file_exists("data/version"))
 		{
 			echo "version=0\r\ndisp_version=None";
 		}
@@ -25,7 +25,7 @@ if ($parts[0] == "info")
 	}
 	else if ($parts[1] == "hashes")
 	{
-		if (!file_exists("../data/hashes"))
+		if (!file_exists("data/hashes"))
 		{
 			echo "";
 		}
