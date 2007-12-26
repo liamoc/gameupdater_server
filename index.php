@@ -1,4 +1,6 @@
 <?php
+require_once "config.php";
+
 $request = substr($_SERVER['REQUEST_URI'], strlen($_SERVER['SCRIPT_NAME']) + 1);
 
 if (empty($request))
@@ -8,7 +10,40 @@ if (empty($request))
 
 $parts = explode("/", $request);
 
-if ($parts[0] == "get")
+if ($parts[0] == "info")
+{
+	if ($parts[1] == "version")
+	{
+		if (!file_exists("../data/version"))
+		{
+			echo "version=0\r\ndisp_version=None";
+		}
+		else
+		{
+			echo file_get_contents("data/version");
+		}
+	}
+	else if ($parts[1] == "hashes")
+	{
+		if (!file_exists("../data/hashes"))
+		{
+			echo "";
+		}
+		else
+		{
+			echo file_get_contents("data/hashes");
+		}
+	}
+	else
+	{
+		if (strstr($file_path, ".."))
+		{
+			header("HTTP/1.0 400 Bad Request");
+		}
+	}
+}
+
+else if ($parts[0] == "get")
 {
 	$file_path = implode("/", array_slice($parts, 1));
 	if (strstr($file_path, ".."))
