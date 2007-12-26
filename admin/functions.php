@@ -1,5 +1,22 @@
 <?php
 
+// First thing we need to do is authenticate
+
+if (!isset($_SERVER['PHP_AUTH_USER'])) {
+    header('WWW-Authenticate: Basic realm="' . $config['title'] . '"');
+    header('HTTP/1.0 401 Unauthorized');
+    echo 'Authentication required.';
+    exit;
+} else {
+	if ($_SERVER['PHP_AUTH_USER'] != $config['username'] || $_SERVER['PHP_AUTH_PW'] != $config['password'])
+	{
+		header('WWW-Authenticate: Basic realm="' . $config['title'] . '"');
+		header('HTTP/1.0 401 Unauthorized');
+		echo "Authentication required.";
+		exit;
+	}
+}
+
 // these are here to be included in every page
 
 $zip_enabled = class_exists("ZipArchive");

@@ -7,7 +7,10 @@ $config = array(
 		"save"
 	),
 	
-	"title" => "GameUpdater"
+	"title" => "GameUpdater",
+	
+	"username" => "admin",
+	"password" => "pass"
 );
 
 ?>
