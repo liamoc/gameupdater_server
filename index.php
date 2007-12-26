@@ -14,11 +14,25 @@ if ($parts[0] == "info")
 {
 	if ($parts[1] == "version")
 	{
-		echo file_get_contents("data/version");
+		if (!file_exists("../data/version"))
+		{
+			echo "version=0\r\ndisp_version=None";
+		}
+		else
+		{
+			echo file_get_contents("data/version");
+		}
 	}
 	else if ($parts[1] == "hashes")
 	{
-		echo file_get_contents("data/hashes");
+		if (!file_exists("../data/hashes"))
+		{
+			echo "";
+		}
+		else
+		{
+			echo file_get_contents("data/hashes");
+		}
 	}
 	else
 	{

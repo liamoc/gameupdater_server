@@ -6,6 +6,10 @@ $zip_enabled = class_exists("ZipArchive");
 
 function get_current_display_version()
 {
+	if (!file_exists("../data/version"))
+	{
+		return "None";
+	}
 	$f = file_get_contents("../data/version");
 	$f = explode("\n", $f);
 	foreach ($f as $l)
@@ -21,6 +25,10 @@ function get_current_display_version()
 
 function get_current_version()
 {
+	if (!file_exists("../data/version"))
+	{
+		return 0;
+	}
 	$f = file_get_contents("../data/version");
 	$f = explode("\n", $f);
 	foreach ($f as $l)
